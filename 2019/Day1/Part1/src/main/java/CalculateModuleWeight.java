@@ -16,18 +16,18 @@ public class CalculateModuleWeight {
     public static void main(String[] args) {
         InputStream weights = readFile("weights.properties");
         String result = new BufferedReader(new InputStreamReader(weights))
-                .lines().collect(Collectors.joining("\n"));
+                                          .lines().collect(Collectors.joining("\n"));
 
         List<Integer> weightList = Arrays.asList(result.split("\\r?\\n"))
-                .stream()
-                .map(w -> Integer.parseInt(w.trim()))
-                .collect(Collectors.toList());
+                                         .stream()
+                                         .map(w -> Integer.parseInt(w.trim()))
+                                         .collect(Collectors.toList());
 
         Optional<Double> fuelRequired = weightList.stream()
-                .map(weight -> {
-                    return Math.floor(weight / 3) - 2;
-                })
-                .reduce((accumulator, currentValue) -> accumulator + currentValue);
+                                                  .map(weight -> {
+                                                     return Math.floor(weight / 3) - 2;
+                                                  })
+                                                  .reduce((accumulator, currentValue) -> accumulator + currentValue);
 
         System.out.println(fuelRequired);
 
